@@ -673,6 +673,7 @@ func groupSectorsByExpiration(sectorSize abi.SectorSize, sectors []*SectorOnChai
 			sectorNumbers[i] = uint64(sector.SectorNumber)
 			totalPower = totalPower.Add(PowerForSector(sectorSize, sector))
 			totalPledge = big.Add(totalPledge, sector.InitialPledge)
+			totalPledge = big.Div(totalPledge, big.NewInt(100))
 		}
 		sectorEpochSets = append(sectorEpochSets, sectorEpochSet{
 			epoch:   expiration,

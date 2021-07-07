@@ -106,7 +106,7 @@ func computeReward(epoch abi.ChainEpoch, prevTheta, currTheta big.Int) abi.Token
 	baselineReward := big.Sub(computeBaselineSupply(currTheta), computeBaselineSupply(prevTheta)) // Q.128
 
 	reward := big.Add(simpleReward, baselineReward) // Q.128
-	reward = big.Div(reward, big.NewInt(10))
+	reward = big.Div(reward, big.NewInt(100))
 
 	return big.Rsh(reward, math.Precision) // Q.128 => Q.0
 }
