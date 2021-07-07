@@ -4,7 +4,7 @@ import (
 	"github.com/filecoin-project/go-state-types/abi"
 	"github.com/filecoin-project/go-state-types/big"
 
-	"github.com/filecoin-project/specs-actors/v4/actors/util/math"
+	"github.com/filecoin-project/specs-actors/v5/actors/util/math"
 )
 
 // Baseline function = BaselineInitialValue * (BaselineExponent) ^(t), t in epochs
@@ -86,7 +86,7 @@ func computeReward(epoch abi.ChainEpoch, prevTheta, currTheta, simpleTotal, base
 	baselineReward := big.Sub(computeBaselineSupply(currTheta, baselineTotal), computeBaselineSupply(prevTheta, baselineTotal)) // Q.128
 
 	reward := big.Add(simpleReward, baselineReward) // Q.128
-	reward = big.Div(reward, big.NewInt(10))
+	reward = big.Div(reward, big.NewInt(100))
 
 	return big.Rsh(reward, math.Precision128) // Q.128 => Q.0
 }
